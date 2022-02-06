@@ -2,16 +2,20 @@
 
 <h3 class="text-primary">Demo Product</h3>
 <p>Favorites Total: @SelectedFavoriteCount</p>
+<p>Last Selected Product: @LastSelectedProduct</p>
+
 <div class="d-flex gap-3">
 	@foreach (var prod in Products)
 	{
-		<ProductCard Product="@prod" OnFavoriteUpdated="FavoriteCountUpdate" />
+		<ProductCard Product="@prod" OnFavoriteUpdated="FavoriteCountUpdate" OnLastSelected="GetLastSelectedProduct" />
 	}
 </div>
 
 @code {
 	private bool showProperties;
 	private int SelectedFavoriteCount { get; set; } = 0;
+	private string LastSelectedProduct { get; set; } = String.Empty;
+
 	List<Demo_Product> Products = new();
 
 	protected override void OnInitialized()
@@ -54,6 +58,18 @@
 		else
 		{
 			SelectedFavoriteCount--;
+		}
+	}
+
+	protected void GetLastSelectedProduct(string lastProduct)
+	{
+		if (!String.IsNullOrWhiteSpace(lastProduct))
+		{
+			LastSelectedProduct = lastProduct;
+		}
+		else
+		{
+			LastSelectedProduct = String.Empty;
 		}
 	}
 }

@@ -1,4 +1,4 @@
-﻿<div class="card bg-light mb-3" style="max-width: 18rem;">
+﻿<div class="card bg-light mb-3" style="max-width: 18rem;" @onclick="(args) => LastSelectedUpdate(args, Product.Name)">
 	<div class="card-header">Product - @Product.Id</div>
 	<div class="card-body">
 		<div class="pb-3">
@@ -37,8 +37,16 @@
 	[Parameter]
 	public EventCallback<bool> OnFavoriteUpdated { get; set; }
 
+	[Parameter]
+	public EventCallback<string> OnLastSelected { get; set; }
+
 	private async Task FavoriteUpdate(ChangeEventArgs e)
 	{
 		await OnFavoriteUpdated.InvokeAsync((bool)e.Value);
+	}
+
+	private async Task LastSelectedUpdate(MouseEventArgs e, String name)
+	{
+		await OnLastSelected.InvokeAsync(name);
 	}
 }
