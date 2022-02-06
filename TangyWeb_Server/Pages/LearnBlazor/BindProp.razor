@@ -1,17 +1,13 @@
 ﻿@page "/learnBlazor/bindProperties"
 
 <h3>Product</h3>
-Name: @product.Name
-<br />
+Name: @product.Name <br />
 
-Active: @product.isActive
-<br />
+Active: @product.isActive <br />
 
-Price: @product.Price
-<br />
+Price: @product.Price <br />
 
-This Product is: @(product.isActive ? "Active" : "InActive")
-<br/>
+This Product is: @(product.isActive ? "Active" : "InActive") <br/>
 
 Property Selected: @selectedProp
 @if (!String.IsNullOrWhiteSpace(selectedProp))
@@ -19,17 +15,13 @@ Property Selected: @selectedProp
 	<p>
 		Property Value: @product.ProductProperties.FirstOrDefault(x => x.Key == selectedProp).Value
 	</p>	
-}
-<br />
-<br />
+}<br /> <br />
 
 Active:
-<input type="checkbox" @bind-value="@product.isActive" checked="@(product.isActive ? "checked" : null)" />
-<br />
+<input type="checkbox" @bind-value="@product.isActive" checked="@(product.isActive ? "checked" : null)" /> <br />
 
 Price:
-<input type="number" @bind-value="@product.Price" @bind-value:event="oninput" />
-<br />
+<input type="number" @bind-value="@product.Price" @bind-value:event="oninput" /> <br />
 
 Product Properties:
 <select @bind="selectedProp">
@@ -39,9 +31,7 @@ Product Properties:
 	}
 </select>
 
-@*Alternative way*@
-@*Price:
-	<input type="number" @bind="@product.Price" @bind:event="oninput" />*@
+
 
 @code {
 	private string selectedProp = "";
@@ -61,3 +51,7 @@ Product Properties:
 			}
 		};
 }
+
+@*Alternative way*@
+@*Price:
+	<input type="number" @bind="@product.Price" @bind:event="oninput" />*@
