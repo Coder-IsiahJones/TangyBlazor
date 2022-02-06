@@ -1,0 +1,31 @@
+﻿<div class="card bg-light mb-3" style="max-width: 18rem;">
+	<div class="card-header">Product - @Product.Id</div>
+	<div class="card-body">
+		<div>
+			<label>Name: @Product.Name</label>
+		</div>
+
+		<div>
+			<label>Show Properties</label>
+			<input class="form-check-input" type="checkbox" @bind-value="Product.isActive" checked="@(Product.isActive ? "checked" : null)" />
+		</div>
+
+		@if (Product.isActive)
+		{
+			<hr />
+			@foreach (var properties in Product.ProductProperties)
+			{
+				<p>@properties.Key - @properties.Value</p>
+			}
+		}
+	</div>
+
+	<div class="m-2">
+		<EditDeleteButton isActive="@Product.isActive" />
+	</div>
+</div>
+
+@code {
+	[Parameter]
+	public Demo_Product Product { get; set; }
+}

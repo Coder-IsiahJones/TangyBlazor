@@ -4,35 +4,10 @@
 <div class="d-flex gap-3">
 	@foreach (var prod in Products)
 	{
-
-		<div class="card bg-light mb-3" style="max-width: 18rem;">
-			<div class="card-header">Product - @prod.Id</div>
-			<div class="card-body">
-				<div>
-					<label>Name: @prod.Name</label>
-				</div>
-
-				<div>
-					<label>Show Properties</label>
-					<input class="form-check-input" type="checkbox" @bind-value="prod.isActive" checked="@(prod.isActive ? "checked" : null)" />
-				</div>
-
-				@if (prod.isActive)
-				{
-					<hr />
-					@foreach (var properties in prod.ProductProperties)
-					{
-						<p>@properties.Key - @properties.Value</p>
-					}
-				}
-			</div>
-
-			<div class="m-2">
-				<EditDeleteButton isActive="@prod.isActive" />
-			</div>
-		</div>
+		<ProductCard Product="@prod" />
 	}
 </div>
+
 @code {
 	private bool showProperties;
 
