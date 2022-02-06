@@ -1,16 +1,17 @@
 ﻿@page "/learnBlazor/demoproduct"
 
 <h3 class="text-primary">Demo Product</h3>
+<p>Favorites Total: @SelectedFavoriteCount</p>
 <div class="d-flex gap-3">
 	@foreach (var prod in Products)
 	{
-		<ProductCard Product="@prod" />
+		<ProductCard Product="@prod" OnFavoriteUpdated="FavoriteCountUpdate" />
 	}
 </div>
 
 @code {
 	private bool showProperties;
-
+	private int SelectedFavoriteCount { get; set; } = 0;
 	List<Demo_Product> Products = new();
 
 	protected override void OnInitialized()
@@ -42,5 +43,17 @@
 					new Demo_ProductProperties { Id = 3, Key = "Color", Value = "White" }
 				}
 			});
+	}
+
+	protected void FavoriteCountUpdate(bool isSelected)
+	{
+		if (isSelected)
+		{
+			SelectedFavoriteCount++;
+		}
+		else
+		{
+			SelectedFavoriteCount--;
+		}
 	}
 }
