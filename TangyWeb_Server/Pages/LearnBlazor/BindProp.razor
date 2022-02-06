@@ -1,14 +1,28 @@
 ﻿@page "/learnBlazor/bindProperties"
 
 <h3>Product</h3>
-Name: @product.Name <br />
-active: @product.isActive
+Name: @product.Name
+<br />
+
+Active: @product.isActive
+<br />
+
+Price: @product.Price
+<br />
+
+Price:
+<input type="number" @bind-value="@product.Price" @bind-value:event="oninput" />
+
+@*Alternative way*@
+@*Price:
+<input type="number" @bind="@product.Price" @bind:event="oninput" />*@
 
 @code {
 	Tangy_Models.LearnBlazorModels.Demo_Product product = new()
 		{
 			Id = 1,
 			Name = "Rose Candle",
-			isActive = true
+			isActive = true,
+			Price = 10.99
 		};
 }
